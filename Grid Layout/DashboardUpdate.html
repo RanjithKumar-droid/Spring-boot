@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Dashboard.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript" charset="utf8"
+    src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+
+  <script type="text/javascript" src="update.js"></script>
+  <script type="text/javascript" src="grid.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+    integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          
+    <title>Upate stocks</title>
+</head>
+
+<body>
+    <section id="sidebar">
+        <section class="title-container">
+            <img src="logot.png" width="38px" alt="logo" />
+            <h1>Stock Shop</h1>
+        </section>
+        <section class="links-container">
+            <div class="links">
+                <div class="icon iconactive">
+                    <a href="Dashboard.html"><i class="fas fa-home"></i></a>
+                </div>
+                <a href="Dashboard.html">Home</a>
+            </div>
+            <div class="links">
+                <div class="icon">
+                    <a href="Dashboardadd.html"><i class="fas fa-cart-plus"></i></a>
+                </div>
+                <a href="Dashboardadd.html">Add stocks</a>
+            </div>
+            <div class="links">
+                <div class="icon">
+                    <a href="Dashboardview.html"><i class="fas fa-list-alt"></i></a>
+                </div>
+                <a href="Dashboardview.html">Stocks available</a>
+            </div>
+            <div class="links">
+                <div class="icon">
+                    <a href="Dashboardsales.html"><i class="fas fa-clipboard-check"></i></a>
+                </div>
+                <a href="Dashboardsales.html">Sales</a>
+            </div>
+        </section>
+    </section>
+
+    <section id="main-dashboard-content">
+        <section id="top-section">
+            <h2 id="welcome-title">Update stocks</h2>
+            <p id="mandatory-field">* These are mandatory fields</p>
+        </section>
+
+        <form id="formid" name="form" onsubmit="save(event);" autocomplete="off">
+            <section id="grid-container-add">
+                <div class="input-grid">
+                    <label for="stock name" class="lbl">Category*</label>
+                    <div class="input-box">
+                        <select name="categories" id="category" class="in">
+                            <option value="select category" selected disabled="">Select category</option>
+                            <option value="Food">Food</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Cosmetics">Cosmetics</option>
+                            <option value="Stationary">Stationary</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <label class="err-lbl" id="lblcat" style="visibility: hidden;">Category is required</label>
+                </div>
+                <div class="input-grid">
+                    <label for="stkname" class="lbl">Stock name*</label>
+                    <div class="input-box">
+                        <input type="text" name="stkname" placeholder="Stock name" class="in" id="stkname">
+                    </div>
+                    <label class="err-lbl" id="lblStk" style="visibility: hidden;">Stock name is required</label>
+                </div>
+                <div class="input-grid">
+                    <label for="quantity" class="lbl">Quantity*</label>
+                    <div class="input-box">
+                        <input type="number" id="quantity" name="quantity" placeholder="Quantity" min="1" class="in">
+                    </div>
+                    <label class="err-lbl" id="lblQty" style="visibility: hidden;">Quantity is required</label>
+                </div>
+                <div class="input-grid">
+                    <label for="baseprice" class="lbl">Base price*</label>
+                    <div class="input-box">
+                        <input type="number" name="baseprice" id="baseprice" placeholder="Base price" min="1"
+                            class="in">
+                    </div>
+                    <label class="err-lbl" style="visibility: hidden;" id="lblBp">Base price is required</label>
+                </div>
+                <div class="input-grid">
+                    <label for="profit" class="lbl">Profit/Qty*</label>
+                    <div class="input-box">
+                        <input type="number" name="profit" id="profit" placeholder="Profit" min="1" class="in">
+                    </div>
+                    <label class="err-lbl" style="visibility: hidden;" id="lblPft">Profit is required</label>
+                </div>
+                <div class="input-grid" id="datehide">
+                    <label for="date" class="lbl">Expiry date</label>
+                    <div class="input-box">
+                        <input type="date" name="date" placeholder="Date" class="in" id="date">
+                    </div>
+                    <label class="err-lbl" style="visibility: hidden;" id="lblDate">Expiry date is required</label>
+                </div>
+                <div class="buttons-form">
+                    <div class="button">
+                        <input type="submit" name="submit" id="submit" value="Update" onclick="addstocks()">
+                    </div>
+                    <!-- <div class="button">
+                        <input type="reset" name="reset" id="reset" value="Reset" onclick="Reset()">
+                    </div> -->
+                </div>
+            </section>
+        </form>
+        <p id="sess"></p>
+    </section>
+</body>
+<script type="text/javascript" src="grid.js"></script>
+<script>
+   
+
+</script>
+
+</html>

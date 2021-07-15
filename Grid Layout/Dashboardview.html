@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script type="text/javascript" charset="utf8"
+    src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="view.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="Dashboard.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+    integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <title>Stocks available</title>
+</head>
+
+<body>
+  <section id="sidebar">
+    <section class="title-container">
+      <img src="logot.png" width="38px" alt="logo" />
+      <h1>Stock Shop</h1>
+    </section>
+    <section class="links-container">
+      <div class="links">
+        <div class="icon">
+          <a href="Dashboard.html"><i class="fas fa-home" title="Home"></i></a>
+        </div>
+        <a href="Dashboard.html">Home</a>
+      </div>
+      <div class="links">
+        <div class="icon">
+          <a href="Dashboardadd.html"><i class="fas fa-cart-plus" title="Add stock"></i></a>
+        </div>
+        <a href="Dashboardadd.html">Add stocks</a>
+      </div>
+      <div class="links navactive">
+        <div class="icon">
+          <a href="Dashboardview.html"><i class="fas fa-list-alt" title="Stocks available"
+              style="color: black;"></i></a>
+        </div>
+        <a href="Dashboardview.html" style="color: black;">Stocks available</a>
+      </div>
+      <div class="links">
+        <div class="icon">
+          <a href="Dashboardsales.html"><i class="fas fa-clipboard-check"></i></a>
+        </div>
+        <a href="Dashboardsales.html">Sales</a>
+      </div>
+    </section>
+  </section>
+  <section id="main-dashboard-content">
+    <section id="top-section">
+      <h2 id="welcome-title" class="view">Stocks available..</h2>
+      <p id="view-sales" class="view">You can also see the sales of particular stock</p>
+    </section>
+    <label for="category">Select for specific category:</label>
+
+    <section id="top-section">
+      <div class="category-view">
+        <select name="category" id="category">
+          <option value="All" selected>All</option>
+          <option value="Food">Food</option>
+          <option value="Cosmetics">Cosmetics</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Stationary">Stationary</option>
+          <option value="others">others</option>
+        </select>
+      </div>
+      <div class="input-boxe">
+        <input type="text" placeholder="Search..." id="search" class="searchbox">
+      </div>
+    </section>
+    <section id="table">
+      <table class="table" id="mytable">
+        <thead>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Category</th>
+            <th scope="col">Stock name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Base price/Qty</th>
+            <th scope="col">Selling price/Qty</th>
+            <th scope="col">Profit/Qty</th>
+            <th scope="col">Expiry date</th>
+            <th scope="col">Action</th>
+            <th style="display: none;">id</th>
+          </tr>
+        </thead>
+        <tbody id="stockbody">
+
+        </tbody>
+      </table>
+    </section>
+  </section>
+  <div id="contextMenu">
+    <a href="Dashboardadd.html">Edit</a>
+    <a href="Dashboardsales.html">Sales</a>
+  </div>
+</body>
+<script type="text/javascript">
+
+  
+  $("#search").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    var rowss = $("tbody tr");
+    console.log(rowss);
+    $("tbody tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+
+  $("#category").on("change", function () {
+    var value = $(this).val().toUpperCase();
+
+    $("tbody tr").each(function () {
+      var row = $(this);  			      	    // contains all rows
+      var id = row.find("td:eq(1)").text().toUpperCase(); // all the values of second td
+      if (value == "ALL") {
+        row.show();
+      }
+      else if (id.indexOf(value) !== 0) {
+        row.hide();
+      } else {
+        row.show();
+      }
+    });
+  });
+
+
+</script>
+
+
+<script>
+
+</script>
+
+</html>

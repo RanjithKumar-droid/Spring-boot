@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#sidebar{
+    width: 270px;
+    height: 100vh;
+    background-color: #3399FF;
+}
+.title-container{
+    padding: 15px;
+    box-sizing: border-box;
+}
+.links{
+    display: inline-block;
+    width: 270px;
+}
+.links > i{
+    padding: 15px;
+    color: white;
+}
+.links > a{
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+}
+.links:hover{
+    background-color: white;
+    color: black !important;
+}
