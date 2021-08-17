@@ -16,26 +16,34 @@
 
   <script type="text/javascript" src="update.js"></script>
   <script type="text/javascript" src="grid.js"></script>
-
+    <script src="view.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="icon" href="mylogoz.png" type="image" sizes="16x16">
 
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
     integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="hamburger.js"></script>
           
-    <title>Upate stocks</title>
+    <title>Update stocks</title>
 </head>
 
 <body>
     <section id="sidebar">
+        <div class="hamburger">
+			<i class="fas fa-bars"></i>
+		</div>
         <section class="title-container">
-            <img src="logot.png" width="38px" alt="logo" />
+            <img src="mylogoz.png" width="38px" alt="logo" title="logo" />
             <h1>Stock Shop</h1>
         </section>
         <section class="links-container">
@@ -72,7 +80,7 @@
             <p id="mandatory-field">* These are mandatory fields</p>
         </section>
 
-        <form id="formid" name="form" onsubmit="save(event);" autocomplete="off">
+        <form id="formid" name="form" onsubmit="updatepage(event);" autocomplete="off">
             <section id="grid-container-add">
                 <div class="input-grid">
                     <label for="stock name" class="lbl">Category*</label>
@@ -103,7 +111,7 @@
                     <label class="err-lbl" id="lblQty" style="visibility: hidden;">Quantity is required</label>
                 </div>
                 <div class="input-grid">
-                    <label for="baseprice" class="lbl">Base price*</label>
+                    <label for="baseprice" class="lbl">Base price/Qty*</label>
                     <div class="input-box">
                         <input type="number" name="baseprice" id="baseprice" placeholder="Base price" min="1"
                             class="in">
@@ -126,11 +134,9 @@
                 </div>
                 <div class="buttons-form">
                     <div class="button">
-                        <input type="submit" name="submit" id="submit" value="Update" onclick="addstocks()">
+                        <input type="submit" name="submit" id="submit" value="Update"  style="margin-left: 75px;">
                     </div>
-                    <!-- <div class="button">
-                        <input type="reset" name="reset" id="reset" value="Reset" onclick="Reset()">
-                    </div> -->
+                   
                 </div>
             </section>
         </form>

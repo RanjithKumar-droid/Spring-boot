@@ -6,32 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Dashboard.css">
+	<link rel="icon" href="mylogoz.png" type="image" >
+<!-- Latest compiled and minified CSS -->
+
+    <script src="hamburger.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js"
-        integrity="sha512-K3MtzSFJk6kgiFxCXXQKH6BbyBrTkTDf7E6kFh3xBZ2QNMtb6cU/RstENgQkdSLkAZeH/zAtzkxJOTTd8BqpHQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"
-        integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+       
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.js" integrity="sha512-K3MtzSFJk6kgiFxCXXQKH6BbyBrTkTDf7E6kFh3xBZ2QNMtb6cU/RstENgQkdSLkAZeH/zAtzkxJOTTd8BqpHQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js" integrity="sha512-RdSPYh1WA6BF0RhpisYJVYkOyTzK4HwofJ3Q7ivt/jkpW6Vc8AurL1R+4AUcvn9IwEKAPm/fk7qFZW3OuiUDeg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Add stocks</title> -->
     <title>Add stocks</title>
 </head>
 
 <body>
     <section id="sidebar">
+        <div class="hamburger">
+			<i class="fas fa-bars"></i>
+		</div>
         <section class="title-container">
-            <img src="logot.png" width="38px" alt="logo" />
+            <img src="mylogoz.png" width="38px" alt="logo" />
             <h1>Stock Shop</h1>
         </section>
         <section class="links-container">
@@ -41,11 +44,11 @@
                 </div>
                 <a href="Dashboard.html">Home</a>
             </div>
-            <div class="links navactive">
+            <div class="links">
                 <div class="icon">
-                    <a href="Dashboardadd.html"><i class="fas fa-cart-plus" style="color: black;"></i></a>
+                    <a href="Dashboardadd.html"><i class="fas fa-cart-plus" style="color: white;"></i></a>
                 </div>
-                <a href="Dashboardadd.html" style="color: black;">Add stocks</a>
+                <a href="Dashboardadd.html" style="color: white; letter-spacing : 3px; font-weight: bold;">Add stocks</a>
             </div>
             <div class="links">
                 <div class="icon">
@@ -87,7 +90,7 @@
                 <div class="input-grid">
                     <label for="stkname" class="lbl">Stock name*</label>
                     <div class="input-box">
-                        <input type="text" name="stkname" placeholder="Stock name" class="in" id="stkname" onkeyup="checking()">
+                        <input type="text" name="stkname" placeholder="Stock name" class="in" id="stkname" onchange="checking()">
                     </div>
                     <label class="err-lbl" id="lblStk" style="visibility: hidden;">Stock name is required</label>
                 </div>
@@ -99,7 +102,7 @@
                     <label class="err-lbl" id="lblQty" style="visibility: hidden;">Quantity is required</label>
                 </div>
                 <div class="input-grid">
-                    <label for="baseprice" class="lbl">Base price*</label>
+                    <label for="baseprice" class="lbl">Base price/Qty*</label>
                     <div class="input-box">
                         <input type="number" name="baseprice" id="baseprice" placeholder="Base price" min="1"
                             class="in">

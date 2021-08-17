@@ -11,8 +11,6 @@ body{
     font-family: "Poppins";
 }     
 #sidebar{
-    /* background-color: #f2f2f2; */
-    /* background-color: #047BD5; */
     background-color: #00203FFF;
     width: 260px;
     height: 100%;
@@ -24,16 +22,48 @@ body{
     border-top-right-radius: 13px;
     border-bottom-right-radius: 13px;
 }
+#sidebar.clicked{
+    width: 75px;
+}
+.hamburger{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-left: 15px;
+}
+.hamburger i {
+    color: white;
+    cursor: pointer;
+    
+}
+
+
+.links a.clicklink{
+    visibility: hidden;
+}
+
+.links .icon a i.clickicon{
+    visibility: visible;
+    margin-left: 15px;
+} 
+
 .title-container{
     display:flex;
     align-items: center;
-    padding: 20px 25px;
+    padding: 20px 13px;
 }
 .title-container h1{
     font-size: 20px;
     font-weight: lighter;
-    padding-left: 20px;
-    color: white;
+    padding-left: 12px;
+    /* color: white; */
+    color: #ADEFD1FF;
+}
+.title-container h1.headinghide{
+   visibility: hidden;
 }
 .links-container{
     padding: 0px 0px;
@@ -42,26 +72,37 @@ body{
     margin-left: 15px;
     color: #ADEFD1FF;  /* will be deleted */
 }
+.links .icon a i:hover{
+    color: white;
+}
 .links{
     display: flex;
     align-items: center;
 }
-.links:hover{
+
+/* .links:hover{
     background-color: white;
     color: black !important;
     letter-spacing: 1px;
+} */
+.links  a:hover{
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
-.links > a:hover{
-    color: black;
+.links  a.anchoractive{
+    color: white;
+    font-weight:800;
+    letter-spacing: 1px;
 }
 .navactive{
     background-color: white;
     color: black;
-    border-right: 5px solid orangered;
+    border-right: 5px solid #00203FFF;
 }
 .icon{
     height: 50px;
-    width: 20px;
+    width: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,13 +110,11 @@ body{
 }
 
 .links a{
-    padding: 0px 50px;
+    display: inline-block;
+    padding: 0px 20px;
     text-decoration: none;
     color: #ADEFD1FF;
-}
-
-.links a:hover{
-    color: black;
+    text-align: center;
 }
 
 #main-dashboard-content{
@@ -84,6 +123,9 @@ body{
     height: 100%;
     padding: 20px 25px;
     transition: 400ms margin-left;
+}
+#main-dashboard-content.maincontentleft{
+    margin-left: 100px;
 }
 #welcome-title{
     font-size: 24px;
@@ -108,6 +150,7 @@ body{
     box-sizing: border-box;
     padding: 50px;
     background-color: white;
+   
 }
 .grid-item:hover{
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -144,13 +187,16 @@ body{
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     border-radius: 5px;
 }
-
+#formid{
+    display: grid;
+    grid-template-columns: 84%;
+    margin-left: 50px;
+}
 #grid-container-add{
+    display: grid;
     padding: 20px 0px 20px 0px;
     border-radius: 5px;
     margin-left: 134px;
-    width: 700px;
-    display: grid;
     grid-template-columns: 1fr 1fr ;
     grid-row-gap: 20px;
     background-color: white;/* editable */
@@ -213,14 +259,13 @@ input:focus{
     background: white;
 }
 .in:focus{
-    /* border-bottom: 2px solid rgb(23, 81, 241); */
     border-left: 8px solid silver;
-    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
 }
 .category-view{
     border: 1px solid silver;
     border-radius: 8px;
-    width: 120px;
+    width: 80px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -231,6 +276,7 @@ input:focus{
 .category-view select{
     outline: none;
     border: none;
+    width: 100px;
     padding-left: 8px;
     letter-spacing: 2px ;
     background: white;
@@ -289,7 +335,7 @@ input:focus{
     box-sizing: border-box;
     text-align: center;
     margin: 20px 5px;
-   
+    
 }
 
 .searchbox{
@@ -385,6 +431,7 @@ table tr td i::before{
     }
     #table{
         overflow-x: auto;
+        width: 100%;
     }
     tr{
         line-height:inherit;
@@ -394,12 +441,24 @@ table tr td i::before{
     }
     .dataTables_wrapper .dataTables_info{
        position: relative;
-        left: 0;
+        margin-left: 250px;
     }
     .dataTables_wrapper .dataTables_length{
         position: relative;
         margin-left: 500px;
         
+    }
+    .dataTables_wrapper .dataTables_paginate{
+        position: absolute;
+        left: 0;
+        box-sizing: border-box;
+        margin-top: 20px;
+    } 
+  
+    .dataTables_wrapper .dataTables_paginate .paginate_button{
+        margin-right: 10px;
+        padding: 5px 10px;
+        border-radius: 4px;
     }
 }
 
@@ -409,8 +468,13 @@ thead{
      color: white;
 }
 .table tr{
-    height: 42px;
+    height: 46px;
     border-bottom: 1px solid silver;
+}
+
+.table tr:hover{
+    
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .table tr th{
@@ -418,6 +482,26 @@ thead{
     border-bottom: 1px solid silver;
 }
 
+tbody > tr:hover{
+    background-color: indigo;
+}
+.dataTables_wrapper .dataTables_filter{
+    position: absolute;
+    top: 120px;
+    left: 1030px;
+}
+
+.dataTables_filter input{
+    
+    /* display: inline-block; */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     background: #00203FFF;
@@ -448,6 +532,7 @@ thead{
   .dataTables_wrapper .dataTables_length{
       position: relative;
       margin-left: -85%;
+      /* background-color: white; */
   }
   .dataTables_length select{
       border:1px solid #aaa;
@@ -455,4 +540,5 @@ thead{
       padding:5px;
       background-color:transparent;
       padding:4px;
+      background-color: white;
     } 

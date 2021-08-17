@@ -20,6 +20,8 @@ var category_err = document.getElementById("lblcat");
 
 
 function checking() {
+  var myid;
+
   var name = {
     "stockname": $("#stkname").val(),
   };
@@ -33,27 +35,58 @@ function checking() {
       console.log(e);
     },
     error: function (data) {
+      var stknamesend = data.responseText;
       if (data.responseText != "fine") {
 
-        setTimeout(function () {
-          if (data.responseText != name) {
-            swal({
-              title: "Wait",
-              text: "stock with this name already exists, do you want to update ?",
-              icon: "error",
+        if (data.responseText != name) {
 
-              button: "Update",
-            })
-            //.then(function(){
-            //   window.location.href = "DashboardUpdate.html";
-            // });
-          }
-        }, 3000)
+          Swal.fire({
+            title: "Wait",
+            text: "stock " + data.responseText + " already exists, do you want to update ?",
+            icon: "warning",
+            type: "warning",
+            allowOutsideClick:false,
+            showCancelButton: true,
+            confirmButtonColor: '#36c6d3',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Update",
+            cancelButtonText: "cancel"
+          })
+            .then(function () {
+              
+              $.ajax({
+                dataType: "json",
+                contentType: "application/json",
+                url: "http://localhost:8080/stockshop/getbystkname/" + data.responseText,
+                type: "GET",
+                success: function (f) {
+                  myid = f.id;
+                  sessionStorage.setItem('MYID', myid);
+                  console.log(myid);
+                  sessionStorage.setItem('MYID',);
+
+                  console.log(f);
+                },
+                error: function (e) {
+                  let iii = e.id;
+                  console.log(e);
+                }
+              })
+              // sessionStorage.setItem('MYID',);
+              sessionStorage.setItem('STNM', data.responseText);
+              window.location.href = "DashboardUpdate.html";
+            }, function (dismiss) {
+              if (dismiss == 'cancel') {
+                console.log("Cancelled...")
+              }
+            });
+        }
+
       }
       console.log(data);
     }
   });
-  // console.log(stkname.value);
+
 }
 
 function save(event) {
@@ -222,6 +255,9 @@ function quantity_verify() {
     quantity.style.transition = "400ms ease-in-out";
     quantity_err.style.visibility = "hidden";
     return true;
+  } else {
+    quantity.style.borderLeft = "8px solid red";
+    quantity_err.style.visibility = "visible";
   }
 }
 
@@ -231,6 +267,9 @@ function baseprice_verify() {
     baseprice.style.transition = "400ms ease-in-out";
     baseprice_err.style.visibility = "hidden";
     return true;
+  } else {
+    baseprice.style.borderLeft = "8px solid red";
+    baseprice_err.style.visibility = "visible";
   }
 }
 
@@ -241,6 +280,9 @@ function profit_verify() {
     profit.style.transition = "400ms ease-in-out";
     profit_err.style.visibility = "hidden";
     return true;
+  } else {
+    profit.style.borderLeft = "8px solid red";
+    profit_err.style.visibility = "visible";
   }
 }
 
@@ -251,8 +293,14 @@ function date_verify() {
     date.style.transition = "400ms ease-in-out";
     date_err.style.visibility = "hidden";
     return true;
+  } else {
+    date.style.borderLeft = "8px solid red";
+    date_err.style.visibility = "visible";
   }
 }
+
+
+
 
 // $contextMenu = $("#contextMenu");
 // $("table").on("click", "tr i", function (e) {
@@ -267,3 +315,22 @@ function date_verify() {
 // $("body").on("click", function () {
 //   $contextMenu.hide();
 // });
+
+
+
+// buttons: {
+//   confirm: {
+//     text: "Update",
+//     value: true,
+//     visible: true,
+//     className: "",
+//     closeModal: true
+//   },
+//   cancel: {
+//     text: "Change name",
+//     value: false,
+//     visible: true,
+//     className: "",
+//     closeModal: true,
+//   }
+// }

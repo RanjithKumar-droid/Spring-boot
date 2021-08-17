@@ -120,7 +120,9 @@ function validate() {
       date_err.style.color = "red";
       date.focus();
       return false;
-    } 
+    } else{
+      return true;
+    }
   }
 
   if(category.value == ""){
